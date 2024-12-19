@@ -1729,7 +1729,7 @@ extern int main(int argc, char **argv)
    l2_L2Init(1000U, sockset, eventproc);
    l2_l2verb = verb;
    l2_dupchk = axudpchk;
-   signal(SIGCHLD, cleanup); /*CleanWho*/
+   signal(SIGCHLD, (void *)cleanup); /*CleanWho*/
    /*
      MOVE(ADR(mycall), ADR(hc[0*7]), 7);          (* via call *)
      MOVE(ADR(mycall), ADR(hc[1*7]), 7);          (* connect call *)

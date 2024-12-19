@@ -9,14 +9,14 @@
 #include <sys/types.h>
 #include <stdlib.h>
 
-static fftwf_plan p;
+static fftw_plan p;
 
 fftwf_complex* plan(uint n)
 {
   fftwf_complex *io;
 
   io = (fftwf_complex*) fftw_malloc(sizeof(fftwf_complex) * n);
-  p = fftw_plan_dft_1d(n, io, io, FFTW_FORWARD, FFTW_ESTIMATE);
+  p = fftw_plan_dft_1d(n, (fftw_complex *)io, (fftw_complex *)io, FFTW_FORWARD, FFTW_ESTIMATE);
   return io;
 }
 

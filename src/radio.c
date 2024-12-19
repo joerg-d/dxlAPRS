@@ -154,20 +154,20 @@ static void Parms(void)
    char s[1001];
    float fr;
    unsigned long n;
-   unsigned long m;
-   long ni;
+   uint32_t m;
+   int32_t ni;
    char ok0;
    mono = 0;
    rds = 0;
    verb = 0;
-   afc = 50UL;
+   uint32_t afc = 50UL;
    strncpy(url,"127.0.0.1",1001u);
    strncpy(port,"1234",1001u);
    soundfn[0] = 0;
    tune = 100000000UL;
-   ifwidth = 0UL;
+   uint32_t ifwidth = 0UL;
    firw = 0.0f;
-   firl = 16UL;
+   uint32_t firl = 16UL;
    for (;;) {
       osi_NextArg(s, 1001ul);
       if (s[0U]==0) break;

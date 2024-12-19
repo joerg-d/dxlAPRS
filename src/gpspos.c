@@ -1306,7 +1306,7 @@ extern char gpspos_readalmanach(char fnsem[],
                 sizeof(struct YUMA_structAlmanac [32]));
    memset((char *)rinexalm,(char)0,
                 sizeof(struct structEphemeris [3072]));
-   semok = fnsem[0UL] && SEM_ReadAlmanacDataFromFile(fnsem, (char *)alm,
+   semok = fnsem[0UL] && SEM_ReadAlmanacDataFromFile(fnsem, (SEM_structAlmanac *)alm,
                  32U, &cnt);
    if (semok) {
       for (i = 0UL; i<=31UL; i++) {
@@ -1314,9 +1314,9 @@ extern char gpspos_readalmanach(char fnsem[],
       } /* end for */
    }
    yumaok = fnyuma[0UL] && YUMA_ReadAlmanacDataFromFile(fnyuma,
-                (char *)yumaalm, 32U, &cnt);
+                (YUMA_structAlmanac *)yumaalm, 32U, &cnt);
    rinexok = fnrinex[0UL] && RINEX_DecodeGPSNavigationFile(fnrinex,
-                (char *) &rinexklobuchar, (char *)rinexalm, 3071UL,
+                 (GNSS_structKlobuchar *) &rinexklobuchar, (GPS_structEphemeris *)rinexalm, 3071UL,
                  &ri);
    if (rinexok && ri>0UL) {
       if (verb) {
