@@ -1,0 +1,28 @@
+[Unit]
+Description=APRS LoRa connector
+Documentation=https://github.com/oe5hpm/dxlAPRS
+After=network.target
+
+[Service]
+User=dxlaprs
+SupplementaryGroups=gpio
+Environment="INOUT0=-a -L 127.0.0.1:9702:0"
+Environment="INOUT1="
+Environment="INOUT2="
+Environment="INOUT3="
+Environment="INOUT4="
+Environment="INOUT5="
+Environment="INOUT6="
+Environment="INOUT7="
+Environment="INOUT8="
+Environment="INOUT9="
+##Environment="GPIO=8 10 9 11"
+Environment="GPIO=520 522 521 523"
+Environment="RXFREQ=433.775"
+Environment="TXFREQ=433.900"
+Environment="EXTPARAM=-v"
+ExecStart=/usr/bin/ra02 -p $GPIO $INOUT0 -f ${RXFREQ} -F ${TXFREQ} $INOUT1 $INOUT2 $INOUT3 $INOUT4 $INOUT5 $INOUT6 $INOUT7 $INOUT8 $INOUT9 $EXTPARAM
+Type=simple
+
+[Install]
+WantedBy=multi-user.target

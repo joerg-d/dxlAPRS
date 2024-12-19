@@ -1,0 +1,33 @@
+[Unit]
+Description=APRS iGate
+Documentation=https://github.com/oe5hpm/dxlAPRS
+After=network.target
+
+[Service]
+User=dxlaprs
+Environment="CALL=MYCALL"
+Environment="INOUT0=-R 127.0.0.1:0:10201#2m"
+Environment="INOUT1=-R 127.0.0.1:0:10702#LoRa"
+Environment="INOUT2="
+Environment="INOUT3="
+Environment="INOUT4="
+Environment="INOUT5="
+Environment="INOUT6="
+Environment="INOUT7="
+Environment="INOUT8="
+Environment="INOUT9="
+Environment="KEEPHEARDDIRECT=10080"
+Environment="KEEPHEARDINDIRECT=1440"
+Environment="HEARDMAXLINES=50"
+Environment="SHOWHEARD=60"
+Environment="NETBEACON=30:/etc/dxlAPRS/netbeacon.txt"
+Environment="GATEWAY=/etc/dxlAPRS/gateway.txt"
+Environment="PASSWORD=/etc/dxlAPRS/password.txt"
+Environment="LOCALPORT=14580"
+Environment="WWWPORT=14501"
+Environment="WWWDIR=/usr/share/dxlAPRS/www/"
+ExecStart=/usr/bin/udpgate4 -s ${CALL} $INOUT0 $INOUT1 $INOUT2 $INOUT3 $INOUT4 $INOUT5 $INOUT6 $INOUT7 $INOUT8 $INOUT9 -H ${KEEPHEARDDIRECT} -I ${KEEPHEARDINDIRECT} -u ${HEARDMAXLINES} -B ${SHOWHEARD} -n ${NETBEACON} -g ${GATEWAY} -p ${PASSWORD} -t ${LOCALPORT} -w ${WWWPORT} -D ${WWWDIR} -O -0 -v
+Type=simple
+
+[Install]
+WantedBy=multi-user.target

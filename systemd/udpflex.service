@@ -1,0 +1,27 @@
+[Unit]
+Description=KISS TNC connector
+Documentation=https://github.com/oe5hpm/dxlAPRS
+After=network.target
+
+[Service]
+User=dxlaprs
+SupplementaryGroups=dialout
+Environment="INOUT0=-U 127.0.0.1:9201:0"
+Environment="INOUT1="
+Environment="INOUT2="
+Environment="INOUT3="
+Environment="INOUT4="
+Environment="INOUT5="
+Environment="INOUT6="
+Environment="INOUT7="
+Environment="INOUT8="
+Environment="INOUT9="
+Environment="KISSTCP=-T 127.0.0.1:8001"
+Environment="EXTPARAM=-V"
+ExecStart=/usr/bin/udpflex $KISSTCP $INOUT0 $INOUT1 $INOUT2 $INOUT3 $INOUT4 $INOUT5 $INOUT6 $INOUT7 $INOUT8 $INOUT9 $EXTPARAM
+Type=simple
+Restart=on-failure
+RestartSec=30s
+
+[Install]
+WantedBy=multi-user.target
